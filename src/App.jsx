@@ -1,9 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./components/Main"
+import Login from "./components/auth/Login";
+import SignUp from "./components/auth/SignUp";
+
 function App() {
 
   return (
-    <div className="italic text-blue-500">
-      DNA App
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element = {<Main />} />
+          <Route path='/login' element = {<Login />} />
+          <Route path='/signup' element = {<SignUp />} />
+        </Routes>
+    </BrowserRouter>
   )
 }
 
