@@ -1,7 +1,7 @@
 function App() {
 
   return (
-    <div>
+    <div className="italic text-blue-500">
       DNA App
     </div>
   )
