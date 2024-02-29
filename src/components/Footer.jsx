@@ -29,12 +29,12 @@ const Footer = () => {
         )
     })
     return(
-        <footer>
-            <p>&copy; 2022-2023 54DNAtype</p>
-            <ul>
+        <footer className="mx-[5%]">
+            <p className="flex text-gray-400 font-bold justify-center">&copy; 2022-2023 54DNAtype</p>
+            <ul className="flex justify-center gap-5 mt-3 font-bold">
                 {renderedFooterItems}
             </ul>
-            <ul>
+            <ul className="flex justify-center gap-3">
                 {renderedIcons}
             </ul>
         </footer>
