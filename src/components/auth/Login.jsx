@@ -28,7 +28,7 @@ const Login = () => {
     return(
         <section className="mx-[5%]">
             <Header />
-            <div className="flex flex-col gap-5 items-center text-xl font-mono justify-center mt-10">
+            <div className="flex flex-col gap-5 items-center text-xl font-mono justify-center mt-10 mx-[5%]">
             <div className="bg-pink-200 p-5 shadow-lg rounded-md h-full w-[100%] md:w-[70vh] mt-10">
             <form onSubmit={loginHandler} className="flex flex-col">
               <div className="mb-3 space-x-2">
@@ -83,7 +83,7 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          <Link to="/">
+          <Link to="/" className="self-start mt-5 ml-2">
             <p className="flex items-center cursor-pointer hover:underline hover:text-blue-400 mb-[15vh]">
               <IoMdArrowRoundBack />
               Back to home
