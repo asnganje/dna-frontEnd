@@ -6,8 +6,7 @@ const baseUrl = "http://localhost:3000/api/v1/dna"
 const createUser = createAsyncThunk('user/createUser', async (user)=> {
     const url = `${baseUrl}/signup`
     try {
-       const response = await axios.post(url, user)
-       return response.data;
+       await axios.post(url, user)
     } catch (error) {
         throw new Error(`User could not be created due to ${error}`)
     }
