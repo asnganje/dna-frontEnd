@@ -1,13 +1,20 @@
 import { useState } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/thunks/userThunk";
 
 const Login = () => {
     const [loginMethod, setLoginMethod] = useState('email');
     const [email, setEmail] = useState("")
+    const [authenticationNumber, setAuthenticationNumber] = useState("")
     const [id, setId ] = useState("")
+
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch()
 
     const emailChangeHandler = (e) => {
         setEmail(e.target.value)
@@ -17,12 +24,28 @@ const Login = () => {
         setId(e.target.value)
     }
 
+    const codeHandler = (e) => {
+      setAuthenticationNumber(e.target.value)
+    }
+
+    let user = { email, id, authenticationNumber}
+
     const loginHandler = (e) => {
         e.preventDefault()
         if (loginMethod === 'email') {
-            // do something
+          delete user.id
+          dispatch(loginUser(user)).then((result)=> {
+            localStorage.setItem('user', result.payload.msg.nickName);
+            navigate("/");
+          })
+          setEmail('')
         } else if (loginMethod === 'id') {
-            // do something
+          delete user.email
+          dispatch(loginUser(user)).then((result)=> {
+            localStorage.setItem('user', result.payload.msg.nickName);
+            navigate("/");
+          })
+          setId('')
         }
     }
     return(
@@ -69,6 +92,19 @@ const Login = () => {
                     disabled={loginMethod !== 'id'}
                 />
             </div>
+            <div className="mb-3 space-x-2">
+                    <label className="text-gray-600">
+                        Login code
+                    </label>
+                    <input
+                        value={authenticationNumber}
+                        onChange={codeHandler}
+                        type="number"
+                        required={true}
+                        className="w-[75%] rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
+                    />
+            </div>
+
               <button className="text-white font-bold rounded-md w-[40%] mx-[35%] bg-gray-400 hover:bg-gray-500 p-2">
                 Login
               </button>
