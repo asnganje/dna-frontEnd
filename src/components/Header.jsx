@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import logo from '../assets/logo.jpg'
 import { IoIosSearch } from "react-icons/io";
 import { MdLanguage } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ulOne = [
     {id:nanoid(), content: logo},
@@ -28,7 +29,10 @@ const ulFour = [
 
 
 const Header = () => {
-
+    const navigate = useNavigate()
+    const homeRouter = () => {
+        navigate('/')
+    } 
     const initialHeaderItems = ulOne.map((item)=> {
         if(item.content === logo) {
             return(
@@ -72,7 +76,7 @@ const Header = () => {
     return(
         <header className="mt-3">
             <nav className="flex justify-around">
-                <ul className="flex flex-col gap-0">
+                <ul className="flex flex-col gap-0 cursor-pointer" onClick={homeRouter}>
                     {initialHeaderItems}
                 </ul>
                 <ul className="flex gap-3">
