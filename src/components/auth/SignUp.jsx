@@ -3,6 +3,8 @@ import Footer from "../Footer";
 import Header from "../Header";
 import { Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../redux/thunks/userThunk";
 
 
 
@@ -13,6 +15,10 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [id, setId] = useState('')
+
+    const dispatch = useDispatch()
+
+    const {isActive} = useSelector((store)=>store.user)
 
     const nameChangeHandler = (e) => {
         setNickName(e.target.value)
@@ -30,11 +36,21 @@ const SignUp = () => {
         setId(e.target.value)
     }
 
+    const user = {nickName, id, email, phone}
+    const signUpHandler = (e) => {
+        e.preventDefault();
+        dispatch(createUser(user))
+        setEmail('')
+        setId('')
+        setNickName('')
+        setPhone('')
+    }
     return(
         <section className="mx-[5%]">
             <Header />
+                {isActive && <p>Registration successful! Use the code submitted to your email for login...</p>}
                     <div className="flex flex-col justify-center content-center mx-[30%] my-[2]%] bg-pink-200 p-5 shadow-lg rounded-md w-[100%] md:w-[70vh]">
-                        <form onSubmit="">
+                        <form onSubmit={signUpHandler}>
                             <div className="mb-3 flex gap-5">
                                 <label className="mt-1">NickName</label>
                                 <input
