@@ -36,4 +36,26 @@ const loginUser = createAsyncThunk('user/loginUser', async (user, {rejectWithVal
     }
 })
 
-export {createUser, loginUser}
+const modifyUser = createAsyncThunk('products/updateProduct', async(user)=> {
+
+    const {id, ...rest} = user
+    const url = `${baseUrl}/user?id=${id}`
+    try {
+        const response = await axios.patch(url, rest)
+        return response.data.msg
+    } catch (error) {
+        throw new Error(`User could not be created due to ${error}`) 
+    }
+})
+
+const removeUser = createAsyncThunk('products/removeProduct', async(userId)=> {
+    const url = `${baseUrl}/user?id=${userId}`
+    try {
+        await axios.delete(url)
+        return userId
+    } catch (error) {
+        throw new Error(`User could not be created due to ${error}`) 
+    }
+})
+
+export {createUser, loginUser, modifyUser, removeUser}
