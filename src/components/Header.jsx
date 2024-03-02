@@ -3,6 +3,8 @@ import logo from '../assets/logo.jpg'
 import { IoIosSearch } from "react-icons/io";
 import { MdLanguage } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const ulOne = [
     {id:nanoid(), content: logo},
@@ -29,6 +31,22 @@ const ulFour = [
 
 
 const Header = () => {
+
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
     const navigate = useNavigate()
     const homeRouter = () => {
         navigate('/')
@@ -75,7 +93,7 @@ const Header = () => {
 
     return(
         <header className="mt-3">
-            <nav className="flex justify-around">
+            {!isSmallScreen && <nav className="flex justify-around">
                 <ul className="flex flex-col gap-0 cursor-pointer" onClick={homeRouter}>
                     {initialHeaderItems}
                 </ul>
@@ -91,7 +109,15 @@ const Header = () => {
                     </ul>
                     <button className="bg-blue-500 text-white p-0.5 ml-1 h-[70%] rounded-md">검사시작</button>
                 </div>
-            </nav>
+            </nav>}
+            {isSmallScreen &&
+                <nav className="flex justify-between">
+                    <ul className="flex flex-col gap-0 cursor-pointer" onClick={homeRouter}>
+                    {initialHeaderItems}
+                    </ul>
+                    <RxHamburgerMenu />
+                </nav>
+            }
         </header>
     )
 }

@@ -88,7 +88,7 @@ const Login = () => {
                     onChange={idChangeHandler}
                     type="number"
                     required={true}
-                    className="w-[100%] mb-[3%] rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
+                    className="w-[75%] mb-[3%] sm:ml-[2%] ml-[5%] rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
                     disabled={loginMethod !== 'id'}
                 />
             </div>

@@ -3,12 +3,12 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:3000/api/v1/dna"
 
-const createUser = createAsyncThunk('user/createUser', async (user)=> {
+const createUser = createAsyncThunk('user/createUser', async (user, { rejectWithValue})=> {
     const url = `${baseUrl}/signup`
     try {
        await axios.post(url, user)
     } catch (error) {
-        throw new Error(`User could not be created due to ${error}`)
+        return rejectWithValue(error.response.data.msg)
     }
 })
 
@@ -38,18 +38,19 @@ const loginUser = createAsyncThunk('user/loginUser', async (user, {rejectWithVal
 
 const modifyUser = createAsyncThunk('products/updateProduct', async(user)=> {
 
-    const {id, ...rest} = user
-    const url = `${baseUrl}/user?id=${id}`
+    const {_id: userId, ...rest} = user
+
+    const url = `${baseUrl}/${userId}`
     try {
         const response = await axios.patch(url, rest)
-        return response.data.msg
+        return response.data
     } catch (error) {
         throw new Error(`User could not be created due to ${error}`) 
     }
 })
 
 const removeUser = createAsyncThunk('products/removeProduct', async(userId)=> {
-    const url = `${baseUrl}/user?id=${userId}`
+    const url = `${baseUrl}/${userId}`
     try {
         await axios.delete(url)
         return userId

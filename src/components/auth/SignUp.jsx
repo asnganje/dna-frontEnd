@@ -18,7 +18,7 @@ const SignUp = () => {
 
     const dispatch = useDispatch()
 
-    const {isActive} = useSelector((store)=>store.user)
+    const {isActive, error} = useSelector((store)=>store.user)
 
     const nameChangeHandler = (e) => {
         setNickName(e.target.value)
@@ -48,8 +48,9 @@ const SignUp = () => {
     return(
         <section className="mx-[5%]">
             <Header />
-                {isActive && <p>Registration successful! Use the code submitted to your email for login...</p>}
-                    <div className="flex flex-col justify-center content-center mx-[30%] my-[2]%] bg-pink-200 p-5 shadow-lg rounded-md w-[100%] md:w-[70vh]">
+                {isActive && <p className="text-green-700 text-center my-2 italic text-2xl">Success! Check mail inbox for authentication code...</p>}
+                {<p className="text-red-500 text-center my-2 text-xl">{error}</p>}
+                    <div className="flex flex-col justify-center content-center sm:mx-[30%] mx-0 my-[2]%] bg-pink-200 p-5 shadow-lg rounded-md w-[100%] md:w-[70vh]">
                         <form onSubmit={signUpHandler}>
                             <div className="mb-3 flex gap-5">
                                 <label className="mt-1">NickName</label>
