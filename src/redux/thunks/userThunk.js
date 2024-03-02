@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/v1/dna"
+const baseUrl = "https://dna-backend-8eek.onrender.com/api/v1/dna" || "http://localhost:3000/api/v1/dna"
 
 const createUser = createAsyncThunk('user/createUser', async (user, { rejectWithValue})=> {
     const url = `${baseUrl}/signup`
