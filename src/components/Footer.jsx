@@ -31,7 +31,7 @@ const Footer = () => {
     return(
         <footer className="mx-[5%] w-[90%]">
             <p className="flex text-gray-400 font-bold justify-center">&copy; 2022-2023 54DNAtype</p>
-            <ul className="sm:flex sm:flex-row flex-col justify-center gap-5 mt-3 font-bold">
+            <ul className="sm:flex sm:flex-row flex flex-col sm:justify-center items-center sm:gap-5 gap-1 mt-3 mb-2 font-bold">
                 {renderedFooterItems}
             </ul>
             <ul className="flex justify-center gap-3">

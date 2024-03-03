@@ -68,7 +68,7 @@ const Main = () => {
                     <img src={banner} alt="banner"  className="w-full"/>
                 </div>
             </section>
-            <section className="mx-[5%] sm:flex sm:flex-row flex-col justify-between">
+            <section className="mx-[5%] sm:flex sm:flex-row flex flex-col items-center justify-between">
                 <div className="w-[40%] my-[10%]">
                     <h6 className="text-blue-500">타입 리포트</h6>
                     <h5>나의 유전자 능력을 파헤치다.</h5>
@@ -91,8 +91,8 @@ const Main = () => {
                     사용후기
                     </p>
                 </div>
-                <div className="sm:flex sm:flex-row flex-col">
-                    <img src={g1} alt="g1" className="ml-5" />
+                <div className="sm:flex sm:flex-row flex flex-col items-center">
+                    <img src={g1} alt="g1" />
                     <img src={g2} alt="g2" />
                     <img src={g3} alt="g3" />
                     <img src={g4} alt="g4" />
