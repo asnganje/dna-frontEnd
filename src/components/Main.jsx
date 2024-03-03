@@ -11,6 +11,7 @@ import g2 from '../assets/g2.jpg'
 import g3 from '../assets/g3.jpg'
 import g4 from '../assets/g4.jpg'
 import g5 from '../assets/g5.jpg'
+import mid from '../assets/mid1.jpg'
 
 const Main = () => {
     const navigate = useNavigate()
@@ -66,6 +67,23 @@ const Main = () => {
                 <div className="mx-[5%] mt-7">
                     <img src={banner} alt="banner"  className="w-full"/>
                 </div>
+            </section>
+            <section className="mx-[5%] sm:flex sm:flex-row flex-col justify-between">
+                <div className="w-[40%] my-[10%]">
+                    <h6 className="text-blue-500">타입 리포트</h6>
+                    <h5>나의 유전자 능력을 파헤치다.</h5>
+                    <p>
+                    회원가입 후에 무료로 학습 유전자 타입 질문검사를 추진하면 부모로부터 물려받아 조합된 유전자 타입을 파악하여 나를 더 일찍 알고 대처하는 것에 의미가 있습니다.
+                    </p>
+                    <div className="sm:flex sm:flex-row flex-col gap-3 sm:space-y-0 space-y-5">
+                        <button className="bg-blue-500 text-white p-2 ml-1 h-[70%] rounded-md">
+                            타입유형
+                        </button>
+                        <button className="bg-white text-blue-500 border border-blue-500 p-2 ml-1 h-[70%] rounded-md">
+                            이론탐구</button>
+                    </div>
+                </div>
+                    <img src={mid} alt="mid" className="w-[30%]"/>
             </section>
             <section className="mx-[5%]">
                 <div className="text-center">
